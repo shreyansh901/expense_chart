@@ -5,12 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Expenses Chart Component</title>
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
   <div class="container">
-
-    <!-- Balance Section -->
+    <!-- Balance -->
     <div class="balance">
       <div>
         <p class="balance-title">My Balance</p>
@@ -19,10 +18,9 @@
       <div class="logo"></div>
     </div>
 
-    <!-- Spending Section -->
+    <!-- Spending -->
     <section class="spending">
       <h1>Spending - Last 7 days</h1>
-
       <div id="spending-chart" class="spending-chart"></div>
 
       <div class="monthly-summary">
@@ -40,7 +38,7 @@
     </section>
   </div>
 
-  <script src="data.json"></script> <!-- This loads the JSON as a global variable `data` -->
-  <script src="script.js"></script>
+  <!-- Load data + render chart -->
+  <script src="script.js" type="module"></script>
 </body>
 </html>
