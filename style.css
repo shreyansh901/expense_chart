@@ -1,114 +1,33 @@
-:root {
-  --soft-red: hsl(10, 79%, 65%);
-  --cyan: hsl(186, 34%, 60%);
-  --dark-brown: hsl(25, 47%, 15%);
-  --medium-brown: hsl(28, 10%, 53%);
-  --cream: hsl(27, 66%, 92%);
-  --very-pale-orange: hsl(33, 100%, 98%);
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: 'DM Sans', sans-serif;
-  background-color: var(--cream);
-  color: var(--dark-brown);
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
-}
-
-.container {
-  max-width: 500px;
-  width: 100%;
-}
-
-/* Balance Card */
-.balance {
-  background: var(--soft-red);
-  color: white;
-  padding: 1.5rem;
-  border-radius: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 1rem;
-}
-
-.balance-title {
-  font-size: 0.95rem;
-  opacity: 0.9;
-}
-
-.balance_amount {
-  font-size: 2.2rem;
-  font-weight: 700;
-  margin-top: 0.3rem;
-}
-
-.logo {
-  width: 60px;
-  height: 60px;
-  background: #000;
-  border: 2px solid white;
-  border-radius: 50%;
-}
-
-/* Spending Card */
-.spending {
-  background: white;
-  border-radius: 1rem;
-  padding: 1.5rem;
-}
-
-.spending h1 {
-  font-size: 1.5rem;
-  margin-bottom: 2rem;
-}
-
-/* Chart */
 .spending-chart {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  height: 220px;
-  gap: 0.7rem;
-  margin-bottom: 1.5rem;
+  height: 200px;
+  gap: 12px;
+  margin-bottom: 24px;
 }
 
 .chart-item {
   flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  justify-content: flex-end;  /* This fixes the 0px height bug */
+  height: 100%;
 }
 
 .spending-chart__bar {
-  min-height: 8px !important;  /* fallback */
+  width: 100%;
+  min-height: 20px;           /* Forces visible size */
   background: var(--soft-red);
   border-radius: 5px;
   cursor: pointer;
   position: relative;
-  transition: background 0.2s ease;
+  transition: background 0.2s;
 }
 
-.spending-chart__bar.active {
-  background: var(--cyan);
-}
-
-.spending-chart__bar:hover {
-  background: hsl(10, 79%, 75%);
-}
-
-.spending-chart__bar.active:hover {
-  background: hsl(186, 34%, 75%);
-}
+.spending-chart__bar.active { background: var(--cyan); }
+.spending-chart__bar:hover { background: hsl(10, 79%, 75%); }
+.spending-chart__bar.active:hover { background: hsl(186, 34%, 75%); }
 
 .tooltip {
   position: absolute;
@@ -117,64 +36,20 @@ body {
   transform: translateX(-50%);
   background: var(--dark-brown);
   color: white;
-  padding: 0.5rem 0.7rem;
+  padding: 8px 10px;
   border-radius: 5px;
-  font-size: 0.9rem;
   font-weight: 700;
+  font-size: 0.9rem;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.2s;
-  white-space: nowrap;
 }
 
-.spending-chart__bar:hover .tooltip {
-  opacity: 1;
-}
+.spending-chart__bar:hover .tooltip { opacity: 1; }
 
 .day-label {
-  margin-top: 0.5rem;
+  text-align: center;
+  margin-top: 8px;
   color: var(--medium-brown);
   font-size: 0.85rem;
-}
-
-/* Monthly Summary */
-.monthly-summary {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  padding-top: 1.5rem;
-  border-top: 2px solid var(--cream);
-}
-
-.spending_total {
-  font-size: 0.95rem;
-  color: var(--medium-brown);
-}
-
-.spending_total span {
-  display: block;
-  font-size: 2.8rem;
-  font-weight: 700;
-  color: var(--dark-brown);
-  margin-top: 0.5rem;
-}
-
-.spending_comparison {
-  text-align: right;
-  font-size: 0.9rem;
-  color: var(--medium-brown);
-}
-
-.spending_comparison strong {
-  display: block;
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: var(--dark-brown);
-  margin-bottom: 0.2rem;
-}
-
-/* Responsive */
-@media (max-width: 480px) {
-  .balance_amount { font-size: 1.9rem; }
-  .spending_total span { font-size: 2.2rem; }
 }

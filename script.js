@@ -1,21 +1,17 @@
-// script.js
 document.addEventListener("DOMContentLoaded", async () => {
-  const chartContainer = document.getElementById("spending-chart");
-
   try {
-    const response = await fetch("data.json");
-    const data = await response.json();
+    const res = await fetch("data.json");
+    const data = await res.json();
 
+    const chart = document.getElementById("spending-chart");
     const today = new Date().getDay();
     const todayIndex = today === 0 ? 6 : today - 1;
+    const max = Math.max(...data.map(d => d.amount));
 
-    const maxAmount = Math.max(...data.map(d => d.amount));
-
-    // Clear any loading state
-    chartContainer.innerHTML = "";
+    chart.innerHTML = ""; // clear
 
     data.forEach((item, i) => {
-      const heightPercent = (item.amount / maxAmount) * 100 || 5; // minimum 5% to avoid 0px
+      const percent = (item.amount / max) * 100;
 
       const wrapper = document.createElement("div");
       wrapper.className = "chart-item";
@@ -24,14 +20,13 @@ document.addEventListener("DOMContentLoaded", async () => {
       bar.className = "spending-chart__bar";
       if (i === todayIndex) bar.classList.add("active");
 
-      // Force minimum height so Cypress can hover
-      bar.style.height = `${Math.max(heightPercent, 8)}%`;
+      bar.style.height = percent + "%";
       bar.dataset.label = item.day;
-      bar.dataset.amount = `$${item.amount.toFixed(2)}`;
+      bar.dataset.amount = "$" + item.amount.toFixed(2);
 
       const tooltip = document.createElement("div");
       tooltip.className = "tooltip";
-      tooltip.textContent = `$${item.amount.toFixed(2)}`;
+      tooltip.textContent = "$" + item.amount.toFixed(2);
       bar.appendChild(tooltip);
 
       const label = document.createElement("div");
@@ -40,13 +35,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       wrapper.appendChild(bar);
       wrapper.appendChild(label);
-      chartContainer.appendChild(wrapper);
+      chart.appendChild(wrapper);
     });
 
-    // Add this line to help Cypress wait
-    chartContainer.classList.add("loaded");
-
   } catch (err) {
-    console.error("Failed to load data:", err);
+    console.error("Failed to load data.json", err);
   }
 });
