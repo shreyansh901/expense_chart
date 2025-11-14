@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Expenses Chart Component</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="container">
+
+    <!-- Balance Section -->
+    <div class="balance">
+      <div>
+        <p class="balance-title">My Balance</p>
+        <p class="balance_amount">$921.48</p>
+      </div>
+      <div class="logo"></div>
+    </div>
+
+    <!-- Spending Section -->
+    <section class="spending">
+      <h1>Spending - Last 7 days</h1>
+
+      <div id="spending-chart" class="spending-chart"></div>
+
+      <div class="monthly-summary">
+        <div>
+          <p class="spending_total">
+            Total this month
+            <span>$478.33</span>
+          </p>
+        </div>
+        <div class="spending_comparison">
+          <strong>+2.4%</strong>
+          from last month
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="data.json"></script> <!-- This loads the JSON as a global variable `data` -->
+  <script src="script.js"></script>
+</body>
+</html>
