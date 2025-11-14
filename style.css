@@ -90,7 +90,7 @@ body {
 }
 
 .spending-chart__bar {
-  width: 100%;
+  min-height: 8px !important;  /* fallback */
   background: var(--soft-red);
   border-radius: 5px;
   cursor: pointer;
